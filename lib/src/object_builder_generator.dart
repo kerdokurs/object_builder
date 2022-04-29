@@ -2,7 +2,7 @@ import 'package:source_gen/source_gen.dart';
 import 'package:build/build.dart';
 import 'package:analyzer/dart/element/element.dart';
 
-import 'object_builder_annotation.dart';
+import '../object_builder_annotation.dart';
 import 'object_builder_visitor.dart';
 
 class ObjectBuilderGenerator extends GeneratorForAnnotation<ObjectBuilder> {
