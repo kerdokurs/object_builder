@@ -1,0 +1,19 @@
+targets:
+  $default:
+    builders:
+      object_builder|objectBuilderGeneratorBuilder:
+        enabled: True
+        generate_for:
+          - lib/*
+
+builders:
+  objectBuilderGeneratorBuilder:
+    import: 'package:object_builder/object_builder.dart'
+    builder_factories: ['objectBuilderGeneratorBuilder']
+    auto_apply: dependents
+    build_extensions:
+      '.dart':
+        - '.g.dart'
+    build_to: source
+    applies_builders:
+      - source_gen|combining_builder

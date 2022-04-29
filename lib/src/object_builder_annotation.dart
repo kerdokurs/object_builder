@@ -1,0 +1,3 @@
+class ObjectBuilder {
+  const ObjectBuilder();
+}
