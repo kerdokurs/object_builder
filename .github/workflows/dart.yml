@@ -7,9 +7,9 @@ name: Dart
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -33,7 +33,6 @@ jobs:
 
       - name: Build project
         run: dart run build_runner build
-
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
