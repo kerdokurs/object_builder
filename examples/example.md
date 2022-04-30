@@ -1,3 +1,6 @@
+# Example
+
+```dart
 import 'package:object_builder/object_builder_annotation.dart';
 
 part 'example.g.dart';
@@ -82,3 +85,4 @@ void main() {
 
   print(person);
 }
+```
