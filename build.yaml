@@ -5,6 +5,8 @@ targets:
         enabled: True
         generate_for:
           - lib/*
+          - test/*
+          - tests/*
 
 builders:
   objectBuilderGeneratorBuilder:

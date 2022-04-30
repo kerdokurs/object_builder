@@ -18,7 +18,7 @@ class ObjectBuilderGenerator extends GeneratorForAnnotation<ObjectBuilder> {
 
     var buffer = StringBuffer();
 
-        List<String> assertedFields = [];
+    List<String> assertedFields = [];
 
     buffer.writeln("class \$${element.name}Builder {");
     visitor.fields.forEach((key, value) {
@@ -54,9 +54,10 @@ class ObjectBuilderGenerator extends GeneratorForAnnotation<ObjectBuilder> {
       }
       variablesSet.add(paramName);
       if (arg.isNamed) {
-        buffer.writeln("      ${paramName}: _${paramName}${isRequired ? '!' : ''},");
+        buffer.writeln(
+            "      ${paramName}: _${paramName}${isRequired ? '!' : ''},");
       } else {
-        buffer.writeln("      _${paramName},");
+        buffer.writeln("      _${paramName}${isRequired ? '!' : ''},");
       }
     });
     buffer.write("    )");
@@ -65,7 +66,8 @@ class ObjectBuilderGenerator extends GeneratorForAnnotation<ObjectBuilder> {
         return;
       }
       var isRequired = !variableType.toString().endsWith("?");
-      buffer.writeln("    ..${variable} = _${variable}${isRequired ? '!' : ''}");
+      buffer
+          .writeln("    ..${variable} = _${variable}${isRequired ? '!' : ''}");
     });
     buffer.writeln(";");
     buffer.writeln("  }");
