@@ -29,7 +29,7 @@ class ObjectBuilderGenerator extends GeneratorForAnnotation<ObjectBuilder> {
 
       var varType = value.toString().replaceAll("?", "") + "?";
 
-      buffer.writeln("  {varTyp} _{key;");
+      buffer.writeln("  $varType _$key;");
 
       // setter with return this
       buffer.writeln("  \$${element.name}Builder $key($varType value) {");
