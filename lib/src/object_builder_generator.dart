@@ -29,11 +29,11 @@ class ObjectBuilderGenerator extends GeneratorForAnnotation<ObjectBuilder> {
 
       var varType = value.toString().replaceAll("?", "") + "?";
 
-      buffer.writeln("  ${varType} _${key};");
+      buffer.writeln("  {varTyp} _{key;");
 
       // setter with return this
-      buffer.writeln("  \$${element.name}Builder ${key}(${varType} value) {");
-      buffer.writeln("    _${key} = value;");
+      buffer.writeln("  \$${element.name}Builder $key($varType value) {");
+      buffer.writeln("    _$key = value;");
       buffer.writeln("    return this;");
       buffer.writeln("  }");
     });
@@ -41,33 +41,32 @@ class ObjectBuilderGenerator extends GeneratorForAnnotation<ObjectBuilder> {
     Set<String> variablesSet = {};
 
     buffer.writeln("  ${element.name} build() {");
-    assertedFields.forEach((field) {
-      buffer.writeln("    assert(_${field} != null);");
-    });
+    for (var field in assertedFields) {
+      buffer.writeln("    assert(_$field != null);");
+    }
     buffer.writeln("    return ${element.name}(");
-    visitor.constructorArgs.forEach((arg) {
+    for (var arg in visitor.constructorArgs) {
       var paramName = arg.name;
       var isRequired = !arg.type.toString().endsWith("?");
 
       if (variablesSet.contains(paramName)) {
-        return;
+        continue;
       }
       variablesSet.add(paramName);
       if (arg.isNamed) {
-        buffer.writeln(
-            "      ${paramName}: _${paramName}${isRequired ? '!' : ''},");
+        buffer
+            .writeln("      $paramName: _$paramName${isRequired ? '!' : ''},");
       } else {
-        buffer.writeln("      _${paramName}${isRequired ? '!' : ''},");
+        buffer.writeln("      _$paramName${isRequired ? '!' : ''},");
       }
-    });
+    }
     buffer.write("    )");
     visitor.fields.forEach((variable, variableType) {
       if (variablesSet.contains(variable)) {
         return;
       }
       var isRequired = !variableType.toString().endsWith("?");
-      buffer
-          .writeln("    ..${variable} = _${variable}${isRequired ? '!' : ''}");
+      buffer.writeln("    ..$variable = _$variable${isRequired ? '!' : ''}");
     });
     buffer.writeln(";");
     buffer.writeln("  }");
