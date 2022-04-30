@@ -11,7 +11,7 @@ Define a class and use the `@ObjectBuilder` annotation to generate a builder.
 ```dart
 import 'package:object_builder/object_builder_annotation.dart';
 
-@ObjectBuilder
+@ObjectBuilder()
 class SomeClass {
   String name;
   String? middleName;
